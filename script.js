@@ -6,12 +6,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const items = [
+	{
+		image:
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/800px-Google_2015_logo.svg.png",
+	},
+];
+
 app.get("/", (req, res) => {
-	res.send({ msg: "Working" });
+	res.send(items);
 });
 
 app.post("/post", (req, res) => {
-	res.send(req.body);
+	if (!req.body.image) {
+		return res.status(400).send({ err: "Incorrect data passed" });
+	}
+	items.push({
+		image: req.body.image,
+	});
+
+	res.send({ msg: "Successfuly added product" });
 });
 
 const port = 8080;
