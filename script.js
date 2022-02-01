@@ -25,7 +25,7 @@ app.post("/post", (req, res) => {
 		image: req.body.image,
 	});
 
-	res.send({ msg: "Successfuly added product" });
+	res.send({ msg: "Image Successfuly added" });
 });
 
 const port = 8080;
